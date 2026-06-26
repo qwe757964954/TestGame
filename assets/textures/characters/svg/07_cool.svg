@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<defs><radialGradient id="coo" cx="40%" cy="30%" r="85%"><stop offset="0" stop-color="#F8C3C3"/><stop offset="1" stop-color="#E88080"/></radialGradient></defs>
+<g transform="translate(8,12) scale(1.62)">
+<rect x="8" y="14" width="132" height="128" rx="34" fill="#C0403F"/><rect x="8" y="8" width="132" height="128" rx="34" fill="url(#coo)"/><ellipse cx="44" cy="38" rx="34" ry="17" fill="#fff" opacity="0.28"/>
+<rect x="40" y="66" width="68" height="22" rx="11" fill="#23262B"/><rect x="44" y="70" width="24" height="14" rx="7" fill="#3A4048"/><rect x="80" y="70" width="24" height="14" rx="7" fill="#3A4048"/><line x1="68" y1="74" x2="80" y2="74" stroke="#23262B" stroke-width="4"/>
+<circle cx="52" cy="76" r="3" fill="#8FE0FF" opacity="0.8"/><circle cx="88" cy="76" r="3" fill="#8FE0FF" opacity="0.8"/>
+<path d="M58,100 q18,12 36,-2" fill="none" stroke="#7A2423" stroke-width="3.2" stroke-linecap="round"/>
+</g>
+</svg>

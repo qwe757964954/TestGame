@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<defs><radialGradient id="fro" cx="40%" cy="30%" r="85%"><stop offset="0" stop-color="#CFEFA6"/><stop offset="1" stop-color="#86C25A"/></radialGradient></defs>
+<g transform="translate(8,12) scale(1.62)">
+<rect x="8" y="14" width="132" height="128" rx="34" fill="#4F8F2E"/><rect x="8" y="8" width="132" height="128" rx="34" fill="url(#fro)"/><ellipse cx="44" cy="38" rx="34" ry="17" fill="#fff" opacity="0.28"/>
+<circle cx="56" cy="46" r="16" fill="#E8F6D2"/><circle cx="92" cy="46" r="16" fill="#E8F6D2"/><circle cx="57" cy="49" r="7" fill="#2C3F1E"/><circle cx="91" cy="49" r="7" fill="#2C3F1E"/><circle cx="54" cy="45" r="2.4" fill="#fff"/><circle cx="88" cy="45" r="2.4" fill="#fff"/>
+<path d="M50,84 q24,22 48,0" fill="none" stroke="#2F5E22" stroke-width="3.4" stroke-linecap="round"/>
+<ellipse cx="48" cy="92" rx="8" ry="5" fill="#F2C36A" opacity="0.7"/><ellipse cx="100" cy="92" rx="8" ry="5" fill="#F2C36A" opacity="0.7"/>
+</g>
+</svg>

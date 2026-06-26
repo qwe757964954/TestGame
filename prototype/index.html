@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>萌物消消乐 · 交互原型</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/iconfont/tabler-icons.min.css">
+<style>
+:root{
+--p:#2b2b29;--s:#6b6a64;--t:#9a988f;
+--bg0:#EDEAE2;--bg1:#ffffff;--bg2:#F5F3EE;--bg3:#E9E6DD;
+--bt:rgba(0,0,0,.12);--bs:rgba(0,0,0,.22);
+--rmd:8px;--rlg:12px;--rxl:16px;
+--color-text-primary:var(--p);--color-text-secondary:var(--s);--color-text-tertiary:var(--t);
+--color-background-primary:var(--bg1);--color-background-secondary:var(--bg2);--color-background-tertiary:var(--bg3);
+--color-border-tertiary:var(--bt);--color-border-secondary:var(--bs);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg0);color:var(--p);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+.bar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:.5px solid var(--bt);padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.bar b{font-weight:600;margin-right:8px;}
+.chip{padding:5px 12px;border-radius:11px;font-size:13px;border:.5px solid var(--bs);background:#fff;cursor:pointer;color:var(--p);}
+.chip.on{background:#C0DD97;border-color:#97C459;color:#27500A;}
+.stage{display:flex;justify-content:center;padding:28px 16px 48px;}
+.screen{display:none}
+.screen.active{display:block}
+.frame{width:340px;background:var(--bg1);border:.5px solid var(--bt);border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.10);}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:11px;font-size:13px;font-weight:500;}
+.iconbtn{width:34px;height:34px;border-radius:10px;border:.5px solid var(--bs);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--p);cursor:pointer;background:#fff;}
+.tile{position:absolute;width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:27px;border:3px solid;}
+.cov{opacity:.4}
+.slot{width:38px;height:38px;border-radius:11px;border:1.5px dashed var(--bs);display:flex;align-items:center;justify-content:center;font-size:22px}
+.cloud{position:absolute;background:#fff;border:.5px solid rgba(0,0,0,.06);border-radius:50%}
+.lvl{position:absolute;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:500;border:3px solid;cursor:pointer}
+.stars{position:absolute;width:60px;text-align:center;font-size:11px;letter-spacing:1px}
+.navc{position:relative;width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:23px;border:2px solid;cursor:pointer}
+.cta{height:50px;border-radius:16px;background:#1D9E75;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:500;border:2px solid #0F6E56;cursor:pointer}
+.cell{border-radius:14px;border:2px solid;padding:8px 4px 6px;display:flex;flex-direction:column;align-items:center;gap:3px;background:var(--bg2)}
+.av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;border:2px solid}
+.tab{padding:5px 12px;border-radius:11px;font-size:13px;font-weight:500}
+.hint{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:12px;color:#1D9E75}
+</style>
+</head>
+<body>
+
+<div class="bar">
+<b>萌物消消乐 · 交互原型</b>
+<span class="chip" data-go="home" onclick="go('home')">开始页</span>
+<span class="chip" data-go="level" onclick="go('level')">关卡选择</span>
+<span class="chip" data-go="game" onclick="go('game')">对战</span>
+<span class="chip" data-go="win" onclick="go('win')">结算</span>
+<span class="chip" data-go="codex" onclick="go('codex')">图鉴</span>
+</div>
+
+<div class="stage">
+
+<!-- HOME -->
+<section class="screen active" id="home">
+<div class="frame">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px 6px;">
+    <div style="display:flex;gap:7px;">
+      <span class="pill" style="background:#FAC775;color:#633806;"><i class="ti ti-coin"></i>1,280</span>
+      <span class="pill" style="background:#B5D4F4;color:#0C447C;"><i class="ti ti-diamond"></i>45</span>
+    </div>
+    <div class="iconbtn"><i class="ti ti-settings"></i></div>
+  </div>
+  <div style="text-align:center;padding:8px 0 2px;">
+    <div style="font-size:26px;font-weight:600;color:#D4537E;letter-spacing:1px;">萌物消消乐</div>
+    <div style="font-size:13px;color:var(--s);margin-top:2px;">Role Match · 集卡消除</div>
+  </div>
+  <div style="position:relative;height:172px;margin:0 8px;">
+    <div class="cloud" style="left:34px;top:110px;width:84px;height:56px;"></div>
+    <div class="cloud" style="left:158px;top:112px;width:104px;height:60px;"></div>
+    <div style="position:absolute;left:104px;top:98px;width:112px;height:32px;border-radius:18px;background:#C0DD97;border:2px solid #97C459;"></div>
+    <div style="position:absolute;left:112px;top:22px;width:92px;height:92px;border-radius:50%;background:#F4C0D1;border:4px solid #D4537E;display:flex;align-items:center;justify-content:center;font-size:56px;color:#72243E;"><i class="ti ti-cat"></i></div>
+    <div style="position:absolute;left:180px;top:12px;font-size:28px;color:#EF9F27;"><i class="ti ti-crown"></i></div>
+  </div>
+  <div style="padding:6px 16px 0;">
+    <div class="cta" onclick="go('level')"><i class="ti ti-player-play"></i>开始游戏</div>
+  </div>
+  <div style="display:flex;justify-content:space-around;padding:16px 12px 10px;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--s);"><div class="navc" style="background:#CECBF6;color:#3C3489;border-color:#7F77DD;" onclick="go('codex')"><i class="ti ti-book-2"></i></div>图鉴</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--s);"><div class="navc" style="background:#FAC775;color:#633806;border-color:#BA7517;"><i class="ti ti-shopping-bag"></i></div>商店</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--s);"><div class="navc" style="background:#B5D4F4;color:#0C447C;border-color:#378ADD;"><i class="ti ti-trophy"></i></div>排行榜</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--s);"><div class="navc" style="background:#F7C1C1;color:#791F1F;border-color:#E24B4A;"><i class="ti ti-calendar-heart"></i><span style="position:absolute;top:-4px;right:-4px;width:10px;height:10px;border-radius:50%;background:#E24B4A;"></span></div>签到</div>
+  </div>
+  <div style="margin:0 14px 16px;padding:10px 12px;border-radius:14px;background:var(--bg3);display:flex;align-items:center;gap:8px;font-size:13px;color:var(--s);">
+    <i class="ti ti-gift" style="font-size:18px;color:#1D9E75;"></i>每日任务 2/3　再消除 1 次得 <span style="color:#854F0B;font-weight:500;">×50</span>
+  </div>
+</div>
+</section>
+
+<!-- LEVEL SELECT -->
+<section class="screen" id="level">
+<div class="frame">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 14px 8px;">
+    <div class="iconbtn" onclick="go('home')"><i class="ti ti-chevron-left"></i></div>
+    <div style="font-size:15px;font-weight:500;">樱花小镇 · 1-12</div>
+    <span class="pill" style="background:#FAC775;color:#633806;"><i class="ti ti-coin"></i>1,280</span>
+  </div>
+  <div style="position:relative;width:300px;height:430px;margin:0 auto;">
+    <svg viewBox="0 0 300 430" style="position:absolute;inset:0;width:100%;height:100%;"><path d="M60,392 Q140,360 220,332 Q160,300 80,262 Q160,228 226,186 Q160,150 90,108 Q160,76 220,40" fill="none" stroke="#B4B2A9" stroke-width="5" stroke-dasharray="2 13" stroke-linecap="round" opacity=".7"/></svg>
+    <div class="cloud" style="left:14px;top:350px;width:74px;height:48px;"></div>
+    <div class="cloud" style="left:188px;top:300px;width:84px;height:52px;"></div>
+    <div class="cloud" style="left:34px;top:222px;width:80px;height:50px;"></div>
+    <div class="cloud" style="left:196px;top:60px;width:78px;height:48px;"></div>
+    <div class="stars" style="left:33px;top:340px;color:#EF9F27;">★★★</div>
+    <div class="lvl" style="left:33px;top:365px;background:#FAC775;color:#633806;border-color:#BA7517;" onclick="go('game')">1</div>
+    <div class="stars" style="left:193px;top:280px;color:#EF9F27;">★★★</div>
+    <div class="lvl" style="left:193px;top:305px;background:#B5D4F4;color:#0C447C;border-color:#378ADD;" onclick="go('game')">2</div>
+    <div class="stars" style="left:53px;top:210px;color:#EF9F27;">★★<span style="color:#D3D1C7;">★</span></div>
+    <div class="lvl" style="left:53px;top:235px;background:#F4C0D1;color:#72243E;border-color:#D4537E;" onclick="go('game')">3</div>
+    <div style="position:absolute;left:158px;top:130px;font-size:13px;font-weight:500;color:#1D9E75;">▾ 你在这</div>
+    <div class="lvl" style="left:199px;top:159px;width:60px;height:60px;background:#C0DD97;color:#27500A;border-color:#1D9E75;box-shadow:0 0 0 5px rgba(29,158,117,.28);font-size:21px;" onclick="go('game')">4</div>
+    <div style="position:absolute;left:162px;top:150px;width:40px;height:40px;border-radius:50%;background:#F4C0D1;border:3px solid #D4537E;display:flex;align-items:center;justify-content:center;font-size:22px;color:#72243E;pointer-events:none;"><i class="ti ti-cat"></i></div>
+    <div class="lvl" style="left:63px;top:81px;background:#D3D1C7;color:#5F5E5A;border-color:#B4B2A9;cursor:not-allowed;"><i class="ti ti-lock"></i></div>
+    <div class="lvl" style="left:193px;top:13px;background:#D3D1C7;color:#5F5E5A;border-color:#B4B2A9;cursor:not-allowed;"><i class="ti ti-lock"></i></div>
+  </div>
+  <div style="padding:0 16px 16px;"><div class="cta" style="height:48px;font-size:16px;" onclick="go('game')"><i class="ti ti-player-play"></i>挑战 Lv.4</div></div>
+</div>
+</section>
+
+<!-- GAME -->
+<section class="screen" id="game">
+<div class="frame">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px 8px;">
+    <div class="iconbtn" onclick="go('level')"><i class="ti ti-chevron-left"></i></div>
+    <div style="text-align:center;">
+      <div style="font-size:16px;font-weight:500;">Lv.3 · 樱花小镇</div>
+      <div style="font-size:15px;letter-spacing:1px;margin-top:2px;color:#EF9F27;"><i class="ti ti-star"></i><i class="ti ti-star"></i><i class="ti ti-star"></i><i class="ti ti-star"></i><i class="ti ti-star" style="color:#D3D1C7;"></i></div>
+    </div>
+    <div class="iconbtn"><i class="ti ti-player-pause"></i></div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:2px 16px 6px;">
+    <div style="display:flex;gap:8px;">
+      <span class="pill" style="background:#B5D4F4;color:#0C447C;"><i class="ti ti-cards"></i>剩余 36</span>
+      <span class="pill" style="background:#FAC775;color:#633806;"><i class="ti ti-flame"></i>连击 ×3</span>
+    </div>
+    <span class="pill" style="background:#CECBF6;color:#3C3489;" onclick="go('codex')"><i class="ti ti-book-2"></i>图鉴 12/30</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;padding:2px 16px 6px;">
+    <div style="flex:1;height:9px;border-radius:5px;background:var(--bg3);overflow:hidden;"><div style="width:42%;height:100%;background:#1D9E75;border-radius:5px;"></div></div>
+    <i class="ti ti-gift" style="font-size:18px;color:#1D9E75;"></i><i class="ti ti-gift" style="font-size:18px;color:#B4B2A9;"></i><i class="ti ti-gift" style="font-size:18px;color:#B4B2A9;"></i>
+  </div>
+  <div style="position:relative;height:268px;margin:0 6px;">
+    <div class="cloud" style="left:8px;top:196px;width:78px;height:54px;"></div>
+    <div class="cloud" style="left:80px;top:214px;width:96px;height:60px;"></div>
+    <div class="cloud" style="left:178px;top:214px;width:96px;height:60px;"></div>
+    <div style="position:absolute;left:26px;top:42px;width:268px;height:166px;border-radius:34px;background:#97C459;"></div>
+    <div style="position:absolute;left:26px;top:34px;width:268px;height:166px;border-radius:34px;background:#C0DD97;border:2px solid #97C459;"></div>
+    <div class="tile cov" style="left:60px;top:54px;background:#9FE1CB;color:#085041;border-color:#1D9E75;"><i class="ti ti-mood-cool"></i></div>
+    <div class="tile cov" style="left:112px;top:54px;background:#FAC775;color:#633806;border-color:#BA7517;"><i class="ti ti-cat"></i></div>
+    <div class="tile cov" style="left:164px;top:54px;background:#CECBF6;color:#3C3489;border-color:#7F77DD;"><i class="ti ti-ghost"></i></div>
+    <div class="tile cov" style="left:216px;top:54px;background:#B5D4F4;color:#0C447C;border-color:#378ADD;"><i class="ti ti-robot"></i></div>
+    <div class="tile cov" style="left:86px;top:92px;background:#F5C4B3;color:#712B13;border-color:#D85A30;"><i class="ti ti-dog"></i></div>
+    <div class="tile cov" style="left:138px;top:92px;background:#F7C1C1;color:#791F1F;border-color:#E24B4A;"><i class="ti ti-crown"></i></div>
+    <div class="tile cov" style="left:190px;top:92px;background:#C0DD97;color:#27500A;border-color:#639922;"><i class="ti ti-alien"></i></div>
+    <div class="tile" style="left:60px;top:132px;background:#F4C0D1;color:#72243E;border-color:#D4537E;"><i class="ti ti-mood-smile"></i></div>
+    <div class="tile" style="left:112px;top:132px;background:#FAC775;color:#633806;border-color:#BA7517;"><i class="ti ti-cat"></i></div>
+    <div class="tile" style="left:164px;top:132px;background:#C0DD97;color:#27500A;border-color:#639922;"><i class="ti ti-alien"></i></div>
+    <div class="tile" style="left:216px;top:132px;background:#B5D4F4;color:#0C447C;border-color:#378ADD;"><i class="ti ti-robot"></i></div>
+    <div class="tile" style="left:112px;top:168px;background:#F7C1C1;color:#791F1F;border-color:#E24B4A;"><i class="ti ti-crown"></i></div>
+    <div class="tile" style="left:164px;top:168px;background:#9FE1CB;color:#085041;border-color:#1D9E75;"><i class="ti ti-mood-cool"></i></div>
+    <div class="tile" style="left:138px;top:154px;background:#B5D4F4;color:#0C447C;border-color:#185FA5;box-shadow:0 0 0 5px rgba(24,95,165,.28);cursor:pointer;" onclick="go('win')"><i class="ti ti-robot"></i></div>
+    <div class="hint">点亮起的牌 → 通关结算(演示)</div>
+  </div>
+  <div style="margin:6px 14px 0;padding:10px 12px 12px;border-radius:16px;background:var(--bg3);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
+      <span style="font-size:12px;color:var(--s);"><i class="ti ti-layout-grid"></i> 卡槽</span>
+      <span style="font-size:12px;font-weight:500;color:#A32D2D;">5 / 7　差 1 个消除！</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;">
+      <div class="slot" style="border-style:solid;background:#FAC775;color:#633806;border-color:#BA7517;"><i class="ti ti-cat"></i></div>
+      <div class="slot" style="border-style:solid;background:#FAC775;color:#633806;border-color:#BA7517;"><i class="ti ti-cat"></i></div>
+      <div class="slot" style="border-style:solid;background:#B5D4F4;color:#0C447C;border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.3);"><i class="ti ti-robot"></i></div>
+      <div class="slot" style="border-style:solid;background:#B5D4F4;color:#0C447C;border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.3);"><i class="ti ti-robot"></i></div>
+      <div class="slot" style="border-style:solid;background:#CECBF6;color:#3C3489;border-color:#7F77DD;"><i class="ti ti-ghost"></i></div>
+      <div class="slot"></div><div class="slot"></div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-around;padding:12px 16px 18px;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;color:var(--s);"><div class="navc" style="width:48px;height:48px;background:var(--bg2);border-color:var(--bs);color:var(--p);"><i class="ti ti-arrow-back-up"></i><span style="position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#E24B4A;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;">3</span></div>撤销</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;color:var(--s);"><div class="navc" style="width:48px;height:48px;background:var(--bg2);border-color:var(--bs);color:var(--p);"><i class="ti ti-refresh"></i><span style="position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#E24B4A;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;">1</span></div>洗牌</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;color:var(--s);"><div class="navc" style="width:48px;height:48px;background:var(--bg2);border-color:var(--bs);color:var(--p);"><i class="ti ti-layout-bottombar-expand"></i><span style="position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#E24B4A;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;">2</span></div>移出</div>
+  </div>
+</div>
+</section>
+
+<!-- WIN -->
+<section class="screen" id="win">
+<div class="frame">
+  <div style="position:relative;height:600px;background:#C0DD97;">
+    <div style="position:absolute;inset:0;background:rgba(20,30,15,.5);display:flex;align-items:center;justify-content:center;">
+      <div style="position:relative;width:256px;background:var(--bg1);border-radius:22px;padding:16px;">
+        <div style="text-align:center;font-size:22px;font-weight:600;color:#27500A;margin-top:4px;">通关！</div>
+        <div style="text-align:center;font-size:34px;letter-spacing:3px;color:#EF9F27;margin:2px 0;"><i class="ti ti-star"></i><span style="font-size:44px;vertical-align:-4px;"><i class="ti ti-star"></i></span><i class="ti ti-star"></i></div>
+        <div style="text-align:center;font-size:13px;color:var(--s);margin-bottom:10px;">评价 · 完美 Perfect</div>
+        <div style="display:flex;justify-content:center;gap:10px;margin-bottom:12px;">
+          <span class="pill" style="background:#FAC775;color:#633806;"><i class="ti ti-coin"></i>+120</span>
+          <span class="pill" style="background:#B5D4F4;color:#0C447C;"><i class="ti ti-diamond"></i>+5</span>
+        </div>
+        <div style="border-radius:16px;background:#EEEDFE;border:2px solid #7F77DD;padding:12px;text-align:center;">
+          <div style="font-size:13px;font-weight:500;color:#3C3489;margin-bottom:8px;"><i class="ti ti-sparkles" style="color:#BA7517;"></i> 获得新角色！</div>
+          <div style="width:84px;height:84px;border-radius:50%;background:#CECBF6;border:4px solid #7F77DD;display:flex;align-items:center;justify-content:center;font-size:50px;color:#3C3489;margin:0 auto;"><i class="ti ti-cat"></i></div>
+          <div style="font-size:15px;font-weight:500;color:#3C3489;margin-top:6px;">樱花猫娘</div>
+          <div style="display:inline-block;margin-top:4px;font-size:11px;font-weight:500;color:#fff;background:#7F77DD;padding:2px 10px;border-radius:9px;">史诗 · SSR</div>
+        </div>
+        <div style="margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--s);margin-bottom:5px;"><span><i class="ti ti-book-2"></i> 图鉴收集</span><span style="color:#534AB7;font-weight:500;">12 → 13 / 30</span></div>
+          <div style="height:9px;border-radius:5px;background:var(--bg3);overflow:hidden;"><div style="width:43%;height:100%;background:#7F77DD;border-radius:5px;"></div></div>
+          <div style="font-size:12px;color:#854F0B;margin-top:5px;text-align:center;">再集齐 2 个解锁限定宝箱 <i class="ti ti-gift"></i></div>
+        </div>
+        <div class="cta" style="margin-top:14px;height:48px;font-size:16px;" onclick="go('level')"><i class="ti ti-player-skip-forward"></i>下一关</div>
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <div style="flex:1;height:42px;border-radius:13px;border:.5px solid var(--bs);display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;cursor:pointer;" onclick="go('game')"><i class="ti ti-refresh"></i>重玩</div>
+          <div style="flex:1;height:42px;border-radius:13px;border:.5px solid var(--bs);display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;cursor:pointer;" onclick="go('codex')"><i class="ti ti-book-2"></i>看图鉴</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CODEX -->
+<section class="screen" id="codex">
+<div class="frame">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 14px 8px;">
+    <div class="iconbtn" onclick="go('home')"><i class="ti ti-chevron-left"></i></div>
+    <div style="font-size:15px;font-weight:500;">角色图鉴</div>
+    <span class="pill" style="background:#CECBF6;color:#3C3489;"><i class="ti ti-book-2"></i>13/30</span>
+  </div>
+  <div style="display:flex;gap:7px;padding:2px 14px 10px;flex-wrap:wrap;">
+    <span class="tab" style="background:#C0DD97;color:#27500A;">全部</span>
+    <span class="tab" style="background:var(--bg3);color:var(--s);">普通</span>
+    <span class="tab" style="background:var(--bg3);color:var(--s);">稀有</span>
+    <span class="tab" style="background:var(--bg3);color:var(--s);">史诗</span>
+    <span class="tab" style="background:var(--bg3);color:var(--s);">传说</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px;">
+    <div class="cell" style="border-color:#7F77DD;"><div class="av" style="background:#CECBF6;color:#3C3489;border-color:#7F77DD;"><i class="ti ti-cat"></i></div><span style="font-size:12px;">樱花猫娘</span><span style="font-size:10px;color:#534AB7;">史诗</span></div>
+    <div class="cell" style="border-color:#EF9F27;"><div class="av" style="background:#FAC775;color:#633806;border-color:#BA7517;"><i class="ti ti-crown"></i></div><span style="font-size:12px;">皇冠王</span><span style="font-size:10px;color:#854F0B;">传说</span></div>
+    <div class="cell" style="border-color:#378ADD;"><div class="av" style="background:#B5D4F4;color:#0C447C;border-color:#378ADD;"><i class="ti ti-robot"></i></div><span style="font-size:12px;">机械喵</span><span style="font-size:10px;color:#185FA5;">稀有</span></div>
+    <div class="cell" style="border-color:#1D9E75;"><div class="av" style="background:#9FE1CB;color:#085041;border-color:#1D9E75;"><i class="ti ti-mood-cool"></i></div><span style="font-size:12px;">墨镜哥</span><span style="font-size:10px;color:#0F6E56;">普通</span></div>
+    <div class="cell" style="border-color:#378ADD;"><div class="av" style="background:#B5D4F4;color:#0C447C;border-color:#378ADD;"><i class="ti ti-ghost"></i></div><span style="font-size:12px;">小幽灵</span><span style="font-size:10px;color:#185FA5;">稀有</span></div>
+    <div class="cell" style="border-color:#639922;"><div class="av" style="background:#C0DD97;color:#27500A;border-color:#639922;"><i class="ti ti-alien"></i></div><span style="font-size:12px;">外星崽</span><span style="font-size:10px;color:#3B6D11;">普通</span></div>
+    <div class="cell" style="border-color:var(--bs);border-style:dashed;"><div class="av" style="background:var(--bg3);color:var(--t);border-color:var(--bs);"><i class="ti ti-question-mark"></i></div><span style="font-size:12px;color:var(--t);">？？？</span><span style="font-size:10px;color:var(--t);"><i class="ti ti-lock"></i></span></div>
+    <div class="cell" style="border-color:var(--bs);border-style:dashed;"><div class="av" style="background:var(--bg3);color:var(--t);border-color:var(--bs);"><i class="ti ti-question-mark"></i></div><span style="font-size:12px;color:var(--t);">？？？</span><span style="font-size:10px;color:var(--t);"><i class="ti ti-lock"></i></span></div>
+    <div class="cell" style="border-color:var(--bs);border-style:dashed;"><div class="av" style="background:var(--bg3);color:var(--t);border-color:var(--bs);"><i class="ti ti-question-mark"></i></div><span style="font-size:12px;color:var(--t);">？？？</span><span style="font-size:10px;color:var(--t);"><i class="ti ti-lock"></i></span></div>
+  </div>
+  <div style="margin:12px 14px 16px;padding:10px 12px;border-radius:14px;background:#FAEEDA;border:.5px solid #EF9F27;display:flex;align-items:center;gap:8px;font-size:13px;color:#633806;">
+    <i class="ti ti-medal" style="font-size:20px;color:#BA7517;"></i>樱花小镇系列 4/6　集齐得 <span style="font-weight:500;">限定头像框</span>
+  </div>
+</div>
+</section>
+
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.bar .chip').forEach(c=>c.classList.toggle('on',c.dataset.go===id));
+  window.scrollTo(0,0);
+}
+go('home');
+</script>
+</body>
+</html>

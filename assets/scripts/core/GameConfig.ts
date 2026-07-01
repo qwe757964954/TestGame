@@ -34,3 +34,19 @@ export const GameConfig = {
     /** 牌移动到卡槽的动画时长(秒) */
     MOVE_DURATION: 0.18,
 };
+
+/** 关卡难度参数 */
+export interface LevelParams { typeCount: number; layerCount: number; slotsPerLayer: number; }
+
+/**
+ * 按关卡号生成难度:种类、层数、每层牌数随关卡持续递增。
+ * 封顶抬高,难度爬升到约 16 关(总牌数从 ~27 一路升到 ~138),不再早早停在 78。
+ * 注:typeCount 上限 8 受图标素材数限制(要更多种类需补图标)。
+ */
+export function levelParams(level: number): LevelParams {
+    const L = Math.max(1, level);
+    const typeCount = Math.min(4 + Math.floor((L - 1) / 2), 8);     // 4 → 8(第 9 关封顶)
+    const layerCount = Math.min(2 + Math.floor((L - 1) / 3), 7);    // 2 → 7(第 16 关封顶)
+    const slotsPerLayer = Math.min(9 + (L - 1), 20);                // 9 → 20(第 12 关封顶)
+    return { typeCount, layerCount, slotsPerLayer };
+}

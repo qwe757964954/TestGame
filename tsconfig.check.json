@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2015", "module": "ES2015", "strict": false,
+    "experimentalDecorators": true, "isolatedModules": true,
+    "moduleResolution": "node", "noEmit": true, "skipLibCheck": true,
+    "types": [], "lib": ["ES2017", "DOM"]
+  },
+  "include": [
+    "temp/declarations/cc.d.ts", "temp/declarations/cc.env.d.ts",
+    "assets/scripts/core/GameData.ts", "assets/scripts/core/HomeScene.ts",
+    "assets/scripts/core/SceneDecor.ts", "assets/scripts/core/LevelSelectScene.ts",
+    "assets/scripts/core/GameManager.ts"
+  ]
+}

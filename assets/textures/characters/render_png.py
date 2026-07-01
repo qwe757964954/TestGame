@@ -20,7 +20,7 @@ except ImportError:
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "svg")
-SIZES = [128, 256, 512]
+SIZES = [128, 600, 256, 512]
 
 svgs = sorted(glob.glob(os.path.join(SRC, "*.svg")))
 if not svgs:

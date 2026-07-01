@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.SceneAsset",
-    "_name": "scene",
+    "_name": "scene-001",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -60,7 +60,7 @@
     "_globals": {
       "__id__": 21
     },
-    "_id": "92708611-de91-4d7d-8566-f25e210aaa26"
+    "_id": "93b77396-63cf-4e2a-a949-fac8d1272607"
   },
   {
     "__type__": "cc.Node",
